@@ -1,0 +1,1 @@
+docker run -d --name=api -p 80:3000 api
