@@ -6,7 +6,19 @@ exports.test = function (req, res) {
 	res.send('Greetings from the Test controller!');
 };
 
-exports.user_create = function (req, res) {
+async function checkEmailExist(email){
+	return new Promise((resolve) => {
+		userprofileSchema.findOne({ email: email }).then(function (result) {
+		if(result !==null){
+			 resolve(null);
+			} else {
+				resolve(true);
+			}			
+		});
+	});
+}
+
+async function user_create(req, res) {
 
 	let userprofile = new userprofileSchema(
 		{
@@ -14,24 +26,32 @@ exports.user_create = function (req, res) {
 			password: req.body.password,
 			email: req.body.email,
 			contactno: req.body.contactno,
-			course:req.body.course
+			course: req.body.course
 		});
-
-	userprofile.save(function (err,userdata) {
-		if (err){
-			res.status(400).json({
-				"status": "400",
-				"message": error
-			  });
-		}
-		else{
-			res.status(200).json({
-				"status": "USER CREATED SUCCESSFULLY",
-				"data": userdata
-			  });
-		}
-		
-	})
+	
+	emailExist = await checkEmailExist(req.body.email);
+	if (emailExist === null || emailExist !== true) {
+		res.status(403).json({
+			"status": "403",
+			"data": "email is exist already"
+		});
+	} else {
+		userprofile.save(function (err, userdata) {
+			if (err) {
+				res.status(400).json({
+					"status": "400",
+					"message": error
+				});
+			}
+			else {
+				res.status(200).json({
+					"status": "200",
+					"data": userdata
+				});
+			}
+	
+		})
+	}	
 }
 
 exports.profile_deatail = function (req, res) {
@@ -40,4 +60,9 @@ exports.profile_deatail = function (req, res) {
 		console.log(userdata)
 		res.send(userdata);
 	})
+};
+
+module.exports = {
+	user_create,
+	checkEmailExist
 };
