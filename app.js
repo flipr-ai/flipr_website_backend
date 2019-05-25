@@ -32,13 +32,13 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-app.use('/userprofile', userprofileRouter);
-app.use('/', indexRouter);
+app.use('/api/userprofile', userprofileRouter);
+app.use('/api', indexRouter);
 app.use('/login',loginRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));	
+  next(createError(404));
 });
 
 // error handler
