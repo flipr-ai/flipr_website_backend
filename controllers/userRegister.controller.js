@@ -45,8 +45,9 @@ async function user_create(req, res) {
             {
                 From: '08047104918',
                 To: req.body.contactno,
-                Body: 'This is a test message being sent using Exotel with a (Flipr) and (' + otp + '). If this is being abused, report to 08088919888'
-            }
+//                Body: 'This is a test message being sent using Exotel with a (Flipr) and (' + otp + '). If this is being abused, report to 08088919888'
+                Body:'' + otp + ' is your one time password to verify on Flipr. Do not share your OTP with anyone.'
+}
         };
 
         request(options, function (error, response, body) {
