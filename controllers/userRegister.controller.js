@@ -1,38 +1,41 @@
 const userRegisterSchema = require('../models/userRegister.model');
 var request = require("request");
+const Bcrypt = require("bcryptjs");
 
-async function checkEmailExist(email) {
-    return new Promise((resolve) => {
-        userRegisterSchema.findOne({ email: email }).then(function (result) {
-            if (result !== null) {
-                resolve(null);
-            } else {
-                resolve(true);
-            }
-        });
-    });
-}
+// async function checkEmailExist(email) {
+//     return new Promise((resolve) => {
+//         userRegisterSchema.findOne({ email: email }).then(function (result) {
+//             if (result !== null) {
+//                 resolve(null);
+//             } else {
+//                 resolve(true);
+//             }
+//         });
+//     });
+// }
 
 async function user_create(req, res) {
+
+    var password = Bcrypt.hashSync(req.body.password, 10);
 
     var otp = Math.floor(1000 + Math.random() * 9000);
     console.log(otp); 
     let userRegister = new userRegisterSchema(
         {
             name: req.body.name,
-            password: req.body.password,
+            password: password,
             email: req.body.email,
             contactno: req.body.contactno,
             otp: otp
         });
 
-    emailExist = await checkEmailExist(req.body.email);
-    if (emailExist === null || emailExist !== true) {
-        res.status(403).json({
-            "status": "403",
-            "data": "email is exist already"
-        });
-    } else {
+    // emailExist = await checkEmailExist(req.body.email);
+    // if (emailExist === null || emailExist !== true) {
+    //     res.status(403).json({
+    //         "status": "403",
+    //         "data": "email is exist already"
+    //     });
+    // } else {
 
         var options = {
             method: 'POST',
@@ -67,7 +70,7 @@ async function user_create(req, res) {
             }
 
         })
-    }
+//    }
 }
 
 async function otp_verification(req, res) {
@@ -98,6 +101,6 @@ async function otp_verification(req, res) {
 
 module.exports = {
     user_create,
-    checkEmailExist,
+   // checkEmailExist,
     otp_verification
 };
