@@ -54,15 +54,25 @@ async function user_create(req, res) {
 //	}	
 }
 
-exports.profile_deatail = function (req, res) {
-	userprofileSchema.findById(req.params.id, function (err, userdata) {
-		if (err) throw err;
-		console.log(userdata)
-		res.send(userdata);
+async function profile_deatail(req, res) {
+	userprofileSchema.find({}, function (err, userdata) {
+		if (err) {
+			res.status(400).json({
+				"status": "400",
+				"message": error
+			});
+		}
+		else {
+			res.status(200).json({
+				"status": "200",
+				"data": userdata
+			});
+		}
 	})
 };
 
 module.exports = {
 	user_create,
+	profile_deatail,
 	//checkEmailExist
 };

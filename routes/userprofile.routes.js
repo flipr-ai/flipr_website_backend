@@ -6,7 +6,7 @@ const userprofilecontroller=require('../controllers/userprofile.controller');
 
 router.post('/create', userprofilecontroller.user_create)
 
-//router.get('/:id', userprofilecontroller.profile_deatail)
+router.get('/userdata', userprofilecontroller.profile_deatail)
 
 module.exports=router;
 

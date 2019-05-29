@@ -53,7 +53,7 @@ async function sendotp(req, res){
             });
         }else
         {
-               res.status(200).json({
+             res.status(200).json({
                 "status": "200",
                 "data": "otp send successfully"
             });
@@ -134,7 +134,12 @@ async function otp_verification(req, res) {
                 "message": "invalid Data"
             });
         } else {
-
+            otpSchema.deleteOne({otp: req.body.otp}, function(err){
+                if(err) {
+                    console.log("deleted");
+                }
+              });
+            
             res.status(200).json({
                 "status": "200",
                 "message": "verified successfully"
