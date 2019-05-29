@@ -6,8 +6,8 @@ let userRegisterSchema = new Schema({
 	password: {type: String},
 	email : {type: String},
 	contactno : {type: Number},
-	otp :{type: Number},
-	isverified: { type: Boolean, default: 0 }
+	// otp :{type: Number},
+	// isverified: { type: Boolean, default: 0 }
 
 });
 
