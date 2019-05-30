@@ -1,25 +1,11 @@
 const userprofileSchema = require('../models/user.model');
 
-//Simple version, without validation or sanitation
+//Test function
 exports.test = function (req, res) {
 	res.send('Greetings from the Test controller!');
 };
 
-// async function checkEmailExist(email){
-// 	return new Promise((resolve) => {
-// 		userprofileSchema.findOne({ email: email }).then(function (result) {
-// 		if(result !==null){
-// 			 resolve(null);
-// 			} else {
-// 				resolve(true);
-// 			}			
-// 		});
-// 	});
-// }
-
 async function user_create(req, res) {
-
-	
 
 	let userprofile = new userprofileSchema(
 		{
@@ -28,30 +14,21 @@ async function user_create(req, res) {
 			contactno: req.body.contactno,
 			course: req.body.course
 		});
-	
-	// emailExist = await checkEmailExist(req.body.email);
-	// if (emailExist === null || emailExist !== true) {
-	// 	res.status(403).json({
-	// 		"status": "403",
-	// 		"data": "email is exist already"
-	// 	});
-	// } else {
-		userprofile.save(function (err, userdata) {
-			if (err) {
-				res.status(400).json({
-					"status": "400",
-					"message": error
-				});
-			}
-			else {
-				res.status(200).json({
-					"status": "200",
-					"data": userdata
-				});
-			}
-	
-		})
-//	}	
+	userprofile.save(function (err, userdata) {
+		if (err) {
+			res.status(400).json({
+				"status": "400",
+				"message": error
+			});
+		}
+		else {
+			res.status(200).json({
+				"status": "200",
+				"data": userdata
+			});
+		}
+
+	});
 }
 
 async function profile_deatail(req, res) {
@@ -73,6 +50,5 @@ async function profile_deatail(req, res) {
 
 module.exports = {
 	user_create,
-	profile_deatail,
-	//checkEmailExist
+	profile_deatail
 };
