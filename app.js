@@ -5,6 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require('body-parser');
 var cors = require('cors')
+//var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
+const cookieSession = require('express-session');
 
 var indexRouter = require('./routes/index');
 var userprofileRouter = require('./routes/userprofile.routes');
@@ -24,12 +26,22 @@ mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+//app.set('superSecret', config.secret); // secret variable
+
+
 app.use(cors("*"));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(cookieSession({
+  name: 'session',
+  secret: 'supersecret',
+  resave: true,
+  saveUninitialized: true,
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 

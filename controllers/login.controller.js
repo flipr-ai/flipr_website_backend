@@ -2,6 +2,9 @@ var bodyParser = require('body-parser');
 const userRegisterSchema = require('../models/userRegister.model');
 const Bcrypt = require("bcryptjs");
 
+
+
+
 exports.login = function (req, res) {
     var email = req.body.email;
     var password = req.body.password;
@@ -22,9 +25,20 @@ exports.login = function (req, res) {
                 "message": "The password is invalid"
             });
         }
+        req.session.user=user;
         return res.status(200).json({
             "status": "200",
-            "message": "login successfully"
+            "message": user
         });
     });
 };
+
+exports.logout = function (req, res) {
+
+    req.session.destroy();
+    return res.status(200).json({
+        "status": "200",
+        "message": "logout scuccesfully"
+    });
+
+}

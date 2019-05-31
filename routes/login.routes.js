@@ -7,6 +7,6 @@ const logincontroller=require('../controllers/login.controller');
 
 router.post('/login',logincontroller.login);
 
-
+router.post('/logout',logincontroller.logout);
 
 module.exports=router;
