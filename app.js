@@ -4,11 +4,15 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require('body-parser');
-var cors = require('cors')
+var cors = require('cors');
 //var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 const cookieSession = require('express-session');
 
 var indexRouter = require('./routes/index');
+var testtxn = require('./routes/admin/testtxn');
+var pgredirect = require('./routes/admin/pgredirect');
+var pgresopnse = require('./routes/admin/response');
+
 var userprofileRouter = require('./routes/userprofile.routes');
 var userRegisterRouter = require('./routes/userRegister.routes');
 var loginRouter = require('./routes/login.routes');
@@ -49,6 +53,18 @@ app.use('/api/userprofile', userprofileRouter);
 app.use('/api', indexRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/userRegister', userRegisterRouter);
+
+//for payment
+app.use('/api/testtxn', testtxn);
+app.use('/api/pgredirect', pgredirect);
+app.use('/api/pgresponse', pgresopnse);
+
+
+
+//for view 
+app.use(express.static(__dirname + '/public'));
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
