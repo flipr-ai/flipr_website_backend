@@ -36,7 +36,7 @@ var router = express.Router();
       //    }
       // }
       //    console.log(paramarray);
-      paramarray['CALLBACK_URL'] = '/api/pgresponse/response';  // in case if you want to send callback
+      paramarray['CALLBACK_URL'] = 'https://dev.flipr.co.in/api/pgresponse/response';  // in case if you want to send callback
       //       console.log(PAYTM_MERCHANT_KEY);
       checksum.genchecksum(paramarray, PAYTM_MERCHANT_KEY, function (err, result) {
          //        console.log(result);
