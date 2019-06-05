@@ -16,12 +16,13 @@ var router = express.Router();
       var order = Math.floor(1000 + Math.random() * 9000);
 
       var paramarray = {
-         orderId: "flipr"+order,
-         customerid: "kishan",
+         ORDER_ID: "flipr"+order,
+         CUST_ID: "kishan",
          //"PAYTM_PROD_URL":"https://secure.paytm.in",
          MID: "FGPTNq64340845674739",
          CHANNEL_ID: "WEB",
-         PAYTM_MERCHANT_KEY:"CB5PFWVY5#TirERS",
+        // PAYTM_MERCHANT_KEY:"CB5PFWVY5#TirERS",
+         TXN_AMOUNT:100,
 
       };
       var PAYTM_MERCHANT_KEY = "CB5PFWVY5#TirERS";
