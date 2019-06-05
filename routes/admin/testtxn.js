@@ -22,7 +22,7 @@ var router = express.Router();
          MID: "FGPTNq64340845674739",
          CHANNEL_ID: "WEB",
         // PAYTM_MERCHANT_KEY:"CB5PFWVY5#TirERS",
-         TXN_AMOUNT:100,
+         TXN_AMOUNT:"100",
 
       };
       var PAYTM_MERCHANT_KEY = "CB5PFWVY5#TirERS";
