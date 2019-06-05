@@ -13,8 +13,10 @@ var router = express.Router();
    router.post('/testtxn', function (req, res) {
       //   console.log("POST Order start");
       //     var paramlist = req.body;
+      var order = Math.floor(1000 + Math.random() * 9000);
+
       var paramarray = {
-         orderId: "kishan871",
+         orderId: "flipr"+order,
          customerid: "kishan",
          //"PAYTM_PROD_URL":"https://secure.paytm.in",
          MID: "FGPTNq64340845674739",
