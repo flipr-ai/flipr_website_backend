@@ -25,7 +25,7 @@ router.post('/response', function (req, res) {
 
     console.log("true");
 //    console.log(paramlist);
-  if(paramlist[STATUS]==="TXN_SUCCESS"){
+  if(paramlist['STATUS']==="TXN_SUCCESS"){
     res.redirect('https://fliprpayment.netlify.com/paytmsuccess');
   }
     
