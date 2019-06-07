@@ -21,15 +21,15 @@ router.post('/response', function (req, res) {
   console.log("parapmeter list");
   console.log(paramlist);
   console.log(newbody);
-  if (checksum.verifychecksum(newbody, config.PAYTM_MERCHANT_KEY)) {
+  if (checksum.verifychecksum(paramlist, config.PAYTM_MERCHANT_KEY)) {
 
     console.log("true");
 //    console.log(paramlist);
-    res.render('response.ejs', { 'restdata': "true", 'paramlist': newbody });
+    res.render('response.ejs', { 'restdata': "true", 'paramlist': paramlist });
   } else {
     console.log("false");
   //  console.log(paramlist);
-    res.render('response.ejs', { 'restdata': "false", 'paramlist': newbody });
+    res.render('response.ejs', { 'restdata': "false", 'paramlist': paramlist });
   };
 });
 //};
