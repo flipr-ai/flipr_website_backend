@@ -11,7 +11,7 @@ router.get('/testtxn', function (req, res) {
 
 
 router.post('/testtxn', function (req, res) {
-   //let order = Math.floor(100000 + Math.random() * 900000);
+  
 
    //  MongoClient.connect("mongodb+srv://admin:password@flipr-scyzt.mongodb.net/test?retryWrites=true&w=majority", function (err, db) {
 
@@ -29,8 +29,9 @@ router.post('/testtxn', function (req, res) {
    //  });
 
 
-   let order = count++;
-   var TXN_AMOUNT = req.body.TXN_AMOUNT;
+//   let order = count++;
+ let order = Math.floor(100000 + Math.random() * 900000);  
+var TXN_AMOUNT = req.body.TXN_AMOUNT;
    var CUST_ID = req.body.CUST_ID;
 
    var paramarray = {
