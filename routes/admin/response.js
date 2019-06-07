@@ -26,13 +26,14 @@ router.post('/response', function (req, res) {
 
     console.log("true");
 //    console.log(paramlist);
-  if(status==="TXN_SUCCESS"){
-    res.redirect('https://fliprpayment.netlify.com/paytmsuccess');
+  if(status==="TXN_FAILURE"){
+    res.redirect('https://fliprpayment.netlify.com/paytmfailure');
   }
-    
+  res.redirect('https://fliprpayment.netlify.com/paytmsuccess');   
   //  res.render('response.ejs', { 'restdata': "true", 'paramlist': paramlist });
   } else {
     console.log("false");
+ 
     res.redirect('https://fliprpayment.netlify.com/paytmfailure');
 
   //  console.log(paramlist);
