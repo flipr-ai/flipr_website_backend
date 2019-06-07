@@ -9,12 +9,14 @@ router.post('/response', function (req, res) {
   const newbody = new Array();
   newbody['ORDER_ID'] = req.body['ORDER_ID'];
   newbody['CUST_ID'] = req.body['CUST_ID'];
-  newbody['MID'] = req.body['MID'];
-  newbody['INDUSTRY_TYPE_ID'] = req.body['Retail'];
+  newbody['INDUSTRY_TYPE_ID'] = req.body['INDUSTRY_TYPE_ID'];
   newbody['CHANNEL_ID'] = req.body['CHANNEL_ID'];``
   newbody['TXN_AMOUNT'] = req.body['TXN_AMOUNT'];
-  newbody['CHECKSUMHASH'] = req.body['CHECKSUMHASH'];
+  newbody['MID'] = req.body['MID'];
+  newbody['WEBSITE'] = req.body['WEBSITE'];
   newbody['CALLBACK_URL'] = req.body['CALLBACK_URL'];
+  newbody['CHECKSUMHASH'] = req.body['CHECKSUMHASH'];
+ 
   //var paramarray = new Array();
   console.log("parapmeter list");
   console.log(paramlist);
