@@ -4,12 +4,18 @@
 </head>
 <body>
 <% if (restdata == 'true') { 	%>
-	<center><h1>validation succesfull</h1></center>
-     <%     }else
-          { 	%>
+	window.location.reload("https://fliprdevelopment.netlify.com/paytmsuccess");
+
+	 <%     }
+	else
+		  { 	%>
+			window.location.reload("https://fliprdevelopment.netlify.com/paytmfailure");
             <center><h1>validation unsuccesfull</h1></center>
-       <%  }	%>
-		<form method="post" name="f1"> 
+	   <%  }	%>
+	   
+
+
+		<!-- <form method="post" name="f1"> 
 		<table border="1">
 			<tbody>
 			<tr>
@@ -29,12 +35,12 @@
 				</tr>
 				<!-- <input type="label" name='<%= name %>' value='<%= paramlist[name] %>'>
 				</br> -->
-			<%}%>
+<!---			<%}%>
 			</tbody>
 		</table>
 		<script type="text/javascript">
 			//document.f1.submit();
 		</script>
-	</form>
+	</form> -->
 </body>
 </html>

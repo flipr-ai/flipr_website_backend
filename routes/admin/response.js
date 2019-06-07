@@ -25,6 +25,7 @@ router.post('/response', function (req, res) {
 
     console.log("true");
 //    console.log(paramlist);
+    
     res.render('response.ejs', { 'restdata': "true", 'paramlist': paramlist });
   } else {
     console.log("false");
