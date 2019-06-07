@@ -3,53 +3,69 @@ var config = require('../../config/config');
 var express = require('express');
 var router = express.Router();
 
-   router.get('/testtxn', function (req, res) {
-      //  console.log("in restaurant");
-      //console.log("--------testtxnjs----");
-      res.render('testtxn.ejs', { 'config': config });
+var count = 0;
+
+router.get('/testtxn', function (req, res) {
+   res.render('testtxn.ejs', { 'config': config });
+});
+
+
+router.post('/testtxn', function (req, res) {
+   //let order = Math.floor(100000 + Math.random() * 900000);
+
+   //  MongoClient.connect("mongodb+srv://admin:password@flipr-scyzt.mongodb.net/test?retryWrites=true&w=majority", function (err, db) {
+
+   //    db.collection('Payment', function (err, collection) {
+
+   //      collection.find({ 'ORDER_ID': 3 }).toArray(function (err, docs) {
+   //        if (docs === null) {
+   //          let order = docs.ORDER_ID+1;
+   //        }
+   //        else {
+
+   //        }
+   //      });
+   //    });
+   //  });
+
+
+   let order = count++;
+   var TXN_AMOUNT = req.body.TXN_AMOUNT;
+   var CUST_ID = req.body.CUST_ID;
+
+   var paramarray = {
+
+      ORDER_ID: "flipr" + order,
+      CUST_ID: CUST_ID,
+      INDUSTRY_TYPE_ID: config.INDUSTRY_TYPE_ID,
+      CHANNEL_ID: config.CHANNEL_ID,
+      TXN_AMOUNT: TXN_AMOUNT,
+      MID: config.MID,
+      WEBSITE: config.WEBSITE,
+      CALLBACK_URL: "https://dev.flipr.co.in/api/pgresponse/response"
+
+   }
+   //    console.log(paramarray);
+   const newbody = new Array();
+   newbody['ORDER_ID'] = paramarray['ORDER_ID'];
+   newbody['CUST_ID'] = paramarray['CUST_ID'];
+   newbody['INDUSTRY_TYPE_ID'] = paramarray['INDUSTRY_TYPE_ID'];
+   newbody['CHANNEL_ID'] = paramarray['CHANNEL_ID'];
+   newbody['TXN_AMOUNT'] = paramarray['TXN_AMOUNT'];
+   newbody['MID'] = paramarray['MID'];
+   newbody['WEBSITE'] = paramarray['WEBSITE'];
+   newbody['CALLBACK_URL'] = paramarray['CALLBACK_URL'];
+
+   var PAYTM_MERCHANT_KEY = config.PAYTM_MERCHANT_KEY;
+   console.log(newbody);
+   //   newbody['CHECKSUMHASH'] = paramarray['CHECKSUMHASH'];
+   checksum.genchecksum(paramarray, PAYTM_MERCHANT_KEY, function (err, result) {
+      //   console.log("your are checking the result");
+      //     console.log(result);
+      res.json(result);
+      //        res.render('pgredirect.ejs',{ 'restdata' : result });
    });
-
-
-   router.post('/testtxn', function (req, res) {
-      //   console.log("POST Order start");
-      //     var paramlist = req.body;
-      var order = Math.floor(1000 + Math.random() * 9000);
-
-      var paramarray = {
-         ORDER_ID: "flipr"+order,
-         CUST_ID: "kishan",
-         //"PAYTM_PROD_URL":"https://secure.paytm.in",
-         MID: "FGPTNq64340845674739",
-         CHANNEL_ID: "WEB",
-        // PAYTM_MERCHANT_KEY:"CB5PFWVY5#TirERS",
-         TXN_AMOUNT:"100",
-
-      };
-      var PAYTM_MERCHANT_KEY = "CB5PFWVY5#TirERS";
-      // var paramarray = new Array();
-      // //   console.log(paramlist);
-      // for (name in paramlist) {
-      //    if (name == 'PAYTM_MERCHANT_KEY') {
-      //       var PAYTM_MERCHANT_KEY = paramlist[name];
-      //    } else {
-      //       paramarray[name] = paramlist[name];
-      //    }
-      // }
-      //    console.log(paramarray);
-      paramarray['CALLBACK_URL'] = 'https://dev.flipr.co.in/api/pgresponse/response';  // in case if you want to send callback
-      //       console.log(PAYTM_MERCHANT_KEY);
-      checksum.genchecksum(paramarray, PAYTM_MERCHANT_KEY, function (err, result) {
-         //        console.log(result);
-         res.json({
-            "status": "200",
-            "data": result,
-         });
-
-         //      res.render('pgredirect.ejs',{ 'restdata' : result });
-      });
-
-      //     console.log("POST Order end");
-
-   });
+});
+//});
 
 module.exports = router;

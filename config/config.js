@@ -7,7 +7,7 @@ module.exports = {
   "PAYTM_ENVIORMENT": "PROD",   // PROD FOR PRODUCTION
   "PAYTM_MERCHANT_KEY":"CB5PFWVY5#TirERS",
   "WEBSITE": "WEBSTAGING",
-  "CHANNEL_ID": "WEB",
+  "CHANNEL_ID": "WAP",
   "INDUSTRY_TYPE_ID":"Retail",
   "PAYTM_FINAL_URL":"https://securegw.paytm.in/theia/processTransaction"
 

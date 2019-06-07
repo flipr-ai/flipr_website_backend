@@ -10,10 +10,11 @@ router.post('/response', function (req, res) {
   newbody['ORDER_ID'] = req.body['ORDER_ID'];
   newbody['CUST_ID'] = req.body['CUST_ID'];
   newbody['MID'] = req.body['MID'];
-  newbody['CHANNEL_ID'] = req.body['CHANNEL_ID'];
+  newbody['INDUSTRY_TYPE_ID'] = req.body['Retail'];
+  newbody['CHANNEL_ID'] = req.body['CHANNEL_ID'];``
   newbody['TXN_AMOUNT'] = req.body['TXN_AMOUNT'];
   newbody['CHECKSUMHASH'] = req.body['CHECKSUMHASH'];
-
+  newbody['CALLBACK_URL'] = req.body['CALLBACK_URL'];
   //var paramarray = new Array();
   console.log("parapmeter list");
   console.log(paramlist);
@@ -22,13 +23,12 @@ router.post('/response', function (req, res) {
 
     console.log("true");
 //    console.log(paramlist);
-    res.render('response.ejs', { 'restdata': "true", 'paramlist': paramlist });
+    res.render('response.ejs', { 'restdata': "true", 'paramlist': newbody });
   } else {
     console.log("false");
   //  console.log(paramlist);
-    res.render('response.ejs', { 'restdata': "false", 'paramlist': paramlist });
+    res.render('response.ejs', { 'restdata': "false", 'paramlist': newbody });
   };
-  //vidisha
 });
 //};
 module.exports = router;
