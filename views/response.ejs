@@ -2,27 +2,25 @@
 <head>
 <title>Merchant Check Out Page</title>
 <script type="text/javascript">
-	function loadNewDoc(){
-		if(restdata == 'true'){
-			window.location="https://fliprdevelopment.netlify.com/paytmsuccess";
-		}
-		else
-		{	
-			window.location="http://www.w3.org";
-		}
-	
+	function loadsuccess(){
+	    window.location.href = "https://fliprdevelopment.netlify.com/paytmsuccess";	
+	}
+
+	function loadfailer(){
+	    window.location.href = "https://fliprdevelopment.netlify.com/paytmfailer";	
 	}
 	</script>
 </head>
-<body onLoad="setTimeout('loadNewDoc()', 5000)">
+<body>
 <% if (restdata == 'true') { 	%>
 	<!-- window.location("https://fliprdevelopment.netlify.com/paytmsuccess"); -->
-
+	onload="load()"
 	 <%     }
 	else
 		  { 	%>
-			window.location("https://fliprdevelopment.netlify.com/paytmfailure");
-            <center><h1>validation unsuccesfull</h1></center>
+			onload="loadfailer()"
+			<!-- window.location("https://fliprdevelopment.netlify.com/paytmfailure");
+            <center><h1>validation unsuccesfull</h1></center> -->
 	   <%  }	%>
 	   
 
