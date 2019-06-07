@@ -21,11 +21,12 @@ router.post('/response', function (req, res) {
   console.log("parapmeter list");
   console.log(paramlist);
   console.log(newbody);
+  var status=req.body.STATUS;
   if (checksum.verifychecksum(paramlist, config.PAYTM_MERCHANT_KEY)) {
 
     console.log("true");
 //    console.log(paramlist);
-  if(paramlist['STATUS']==="TXN_SUCCESS"){
+  if(status==="TXN_SUCCESS"){
     res.redirect('https://fliprpayment.netlify.com/paytmsuccess');
   }
     
