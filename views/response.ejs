@@ -1,15 +1,27 @@
 <html>
 <head>
 <title>Merchant Check Out Page</title>
+<script type="text/javascript">
+	function loadNewDoc(){
+		if(restdata == 'true'){
+			window.location="https://fliprdevelopment.netlify.com/paytmsuccess";
+		}
+		else
+		{	
+			window.location="http://www.w3.org";
+		}
+	
+	}
+	</script>
 </head>
-<body>
+<body onLoad="setTimeout('loadNewDoc()', 5000)">
 <% if (restdata == 'true') { 	%>
-	window.location.reload("https://fliprdevelopment.netlify.com/paytmsuccess");
+	<!-- window.location("https://fliprdevelopment.netlify.com/paytmsuccess"); -->
 
 	 <%     }
 	else
 		  { 	%>
-			window.location.reload("https://fliprdevelopment.netlify.com/paytmfailure");
+			window.location("https://fliprdevelopment.netlify.com/paytmfailure");
             <center><h1>validation unsuccesfull</h1></center>
 	   <%  }	%>
 	   
