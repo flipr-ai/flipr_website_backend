@@ -25,7 +25,10 @@ router.post('/response', function (req, res) {
 
     console.log("true");
 //    console.log(paramlist);
+  if(paramlist[STATUS]==="TXN_SUCCESS"){
     res.redirect('https://fliprpayment.netlify.com/paytmsuccess');
+  }
+    
   //  res.render('response.ejs', { 'restdata': "true", 'paramlist': paramlist });
   } else {
     console.log("false");
