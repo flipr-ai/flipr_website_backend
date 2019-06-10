@@ -1,13 +1,15 @@
-var bodyParser = require('body-parser');
 const userRegisterSchema = require('../models/userRegister.model');
 const Bcrypt = require("bcryptjs");
-
-
-
 
 exports.login = function (req, res) {
     var email = req.body.email;
     var password = req.body.password;
+
+    var date = new Date().toISOString();
+    // 
+    // if(err){
+    //     console.log(err);
+    // }
 
     userRegisterSchema.findOne({ email: email, isverified: true }, function (err, user) {
         if (err) {
@@ -25,7 +27,17 @@ exports.login = function (req, res) {
                 "message": "The password is invalid"
             });
         }
-        req.session.user=user;
+        userRegisterSchema.find(req.body.id, {$set:{last_login_date:date}} , {new: true}, function(err, userdata){
+            if(err)
+            {
+                console.log(err);    
+            }
+            else
+            {
+                console.log(userdata);
+            }
+        });
+        req.session.user = user;
         return res.status(200).json({
             "status": "200",
             "message": user
@@ -40,5 +52,5 @@ exports.logout = function (req, res) {
         "status": "200",
         "message": "logout scuccesfully"
     });
-
+    //userRegisterSchema.findByIdAndUpdate(req.body.id, { $set: { 'last_login_date': Date.now() },}, function (err, user) {
 }

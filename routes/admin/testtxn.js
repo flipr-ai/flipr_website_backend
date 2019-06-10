@@ -11,27 +11,10 @@ router.get('/testtxn', function (req, res) {
 
 
 router.post('/testtxn', function (req, res) {
-  
 
-   //  MongoClient.connect("mongodb+srv://admin:password@flipr-scyzt.mongodb.net/test?retryWrites=true&w=majority", function (err, db) {
-
-   //    db.collection('Payment', function (err, collection) {
-
-   //      collection.find({ 'ORDER_ID': 3 }).toArray(function (err, docs) {
-   //        if (docs === null) {
-   //          let order = docs.ORDER_ID+1;
-   //        }
-   //        else {
-
-   //        }
-   //      });
-   //    });
-   //  });
-
-
-//   let order = count++;
- let order = Math.floor(100000 + Math.random() * 900000);  
-var TXN_AMOUNT = req.body.TXN_AMOUNT;
+   //   let order = count++;
+   let order = Math.floor(100000 + Math.random() * 900000);
+   var TXN_AMOUNT = req.body.TXN_AMOUNT;
    var CUST_ID = req.body.CUST_ID;
 
    var paramarray = {
@@ -44,6 +27,7 @@ var TXN_AMOUNT = req.body.TXN_AMOUNT;
       MID: config.MID,
       WEBSITE: config.WEBSITE,
       CALLBACK_URL: "https://dev.flipr.co.in/api/pgresponse/response"
+      //CALLBACK_URL: "http://localhost:3000/api/pgresponse/response"
 
    }
    //    console.log(paramarray);

@@ -27,7 +27,7 @@ async function sendotp(req, res) {
             From: '08047104918',
             To: req.body.contactno,
             Body: 'One Time Password to set your account password is ' + otp + '. - flipr Rewards Team'
-          //  Body: '' + otp + ' is your one time password to verify on Flipr. Do not share your OTP with anyone.'
+            //  Body: '' + otp + ' is your one time password to verify on Flipr. Do not share your OTP with anyone.'
         }
     };
 
@@ -72,6 +72,7 @@ async function user_create(req, res) {
             password: password,
             email: req.body.email,
             contactno: req.body.contactno,
+            creation_date: Date.now(),
         });
     userRegister.save(function (err, userdata) {
         if (err) {
