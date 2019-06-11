@@ -95,14 +95,14 @@ async function user_create(req, res) {
 
     var password = Bcrypt.hashSync(req.body.password, 10);
 
-    emailExist = await checkemailexist(req.body.email);
-    if (emailExist === null) {
-        res.status(403).json({
-            "status": "403",
-            "data": "email is exist already"
-        });
-    }
-    else {
+    // emailExist = await checkemailexist(req.body.email);
+    // if (emailExist === null) {
+    //     res.status(403).json({
+    //         "status": "403",
+    //         "data": "email is exist already"
+    //     });
+    // }
+    // else {
         const errors = req.validationErrors();
         if (errors) {
             res.status(400).json({
@@ -134,7 +134,7 @@ async function user_create(req, res) {
                 }
             });
         }
-    }
+    //}
 }
 
 async function otp_verification(req, res) {
