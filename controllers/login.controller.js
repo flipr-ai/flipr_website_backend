@@ -5,12 +5,6 @@ exports.login = function (req, res) {
     var email = req.body.email;
     var password = req.body.password;
 
-    var date = new Date().toISOString();
-    // 
-    // if(err){
-    //     console.log(err);
-    // }
-
     userRegisterSchema.findOne({ email: email, isverified: true }, function (err, user) {
         if (err) {
             console.log(err)
@@ -18,7 +12,7 @@ exports.login = function (req, res) {
         if (!user) {
             return res.status(404).json({
                 "status": "404",
-                "message": "crediantials are worng or you are not verified"
+                "message": "crediantials are worng"
             });
         }
         if (!Bcrypt.compareSync(password, user.password)) {
@@ -27,21 +21,21 @@ exports.login = function (req, res) {
                 "message": "The password is invalid"
             });
         }
-        userRegisterSchema.find(req.body.id, {$set:{last_login_date:date}} , {new: true}, function(err, userdata){
-            if(err)
-            {
-                console.log(err);    
+        userRegisterSchema.findOneAndUpdate({ email: req.body.email }, { $set: { last_login_date: Date() } }, { new: true }, function (err, userdata) {
+            //        userRegisterSchema.find(req.body.id, {$set:{last_login_date:date}} , {new: true}, function(err, userdata){
+            if (err) {
+                console.log(err);
             }
-            else
-            {
+            else {
+                req.session.user = user;
+                return res.status(200).json({
+                    "status": "200",
+                    "message": user
+                });
                 console.log(userdata);
             }
         });
-        req.session.user = user;
-        return res.status(200).json({
-            "status": "200",
-            "message": user
-        });
+
     });
 };
 
