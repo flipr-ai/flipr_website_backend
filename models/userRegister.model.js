@@ -7,8 +7,8 @@ let userRegisterSchema = new Schema({
 	email : {type: String},
 	contactno : {type: Number},
 	isverified: { type: Boolean, default: 1 },
-	creation_date: { type: Date, default: Date.now},
-	last_login_date:{type: Date, efault: Date.now}
+	// creation_date: { type: Date, default: Date.now},
+	// last_login_date:{type: Date, default: Date.now}
 });
 
 // Exports the model
