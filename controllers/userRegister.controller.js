@@ -129,7 +129,7 @@ async function user_create(req, res) {
                 else {
                     res.status(200).json({
                         "status": "200",
-                        "data": userdata._id
+                        "data": userdata
                     });
                 }
             });
