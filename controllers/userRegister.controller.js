@@ -27,7 +27,6 @@ async function sendotp(req, res) {
             From: '08047104918',
             To: req.body.contactno,
             Body: 'One Time Password to set your account password is ' + otp + '. - flipr Rewards Team'
-            //  Body: '' + otp + ' is your one time password to verify on Flipr. Do not share your OTP with anyone.'
         }
     };
 
@@ -47,47 +46,95 @@ async function sendotp(req, res) {
 }
 
 async function checkEmailExist(req, res) {
-    userRegisterSchema.findOne({ email: req.body.email }).then(function (result) {
-        if (result !== null) {
+
+    req.checkBody("email", "Email is required").notEmpty();
+
+    const errors = req.validationErrors();
+    if (errors) {
+        res.status(400).json({
+            "status": "400",
+            "message": errors
+        });
+    } else {
+        emailExist = await checkemailexist(req.body.email);
+        if (emailExist === null) {
             res.status(403).json({
                 "status": "403",
                 "data": "email is exist already"
-            });
-        } else {
-            res.status(200).json({
-                "status": "200",
-                "data": "you can use email"
-            });
-        }
-
-    });
-}
-
-async function user_create(req, res) {
-
-    var password = Bcrypt.hashSync(req.body.password, 10);
-    let userRegister = new userRegisterSchema(
-        {
-            name: req.body.name,
-            password: password,
-            email: req.body.email,
-            contactno: req.body.contactno,
-            creation_date: Date.now(),
-        });
-    userRegister.save(function (err, userdata) {
-        if (err) {
-            res.status(400).json({
-                "status": "400",
-                "message": error
             });
         }
         else {
             res.status(200).json({
                 "status": "200",
-                "data": userdata
+                "data": "you can use this email"
             });
         }
+    }
+}
+
+async function checkemailexist(email) {
+    return new Promise((resolve) => {
+
+        userRegisterSchema.findOne({ email: email }).then(function (result) {
+            if (result !== null) {
+                resolve(null);
+            } else {
+                resolve(true);
+            }
+
+        });
     });
+    //}
+}
+async function user_create(req, res) {
+
+    req.checkBody("name", "name is required").notEmpty();
+    req.checkBody("password", "password is required").notEmpty();
+    req.checkBody("email", "email is required").notEmpty();
+    req.checkBody("contactno", "contactno is required").notEmpty();
+
+    var password = Bcrypt.hashSync(req.body.password, 10);
+
+    emailExist = await checkemailexist(req.body.email);
+    if (emailExist === null) {
+        res.status(403).json({
+            "status": "403",
+            "data": "email is exist already"
+        });
+    }
+    else {
+        const errors = req.validationErrors();
+        if (errors) {
+            res.status(400).json({
+                "status": "400",
+                "message": errors
+            });
+        } else {
+
+            let userRegister = new userRegisterSchema(
+                {
+                    name: req.body.name,
+                    password: password,
+                    email: req.body.email,
+                    contactno: req.body.contactno,
+                    creation_date: Date.now(),
+                });
+            userRegister.save(function (err, userdata) {
+                if (err) {
+                    res.status(400).json({
+                        "status": "400",
+                        "message": error
+                    });
+                }
+                else {
+                    res.status(200).json({
+                        "status": "200",
+                        "data": userdata._id
+                    });
+                }
+            });
+        }
+    }
 }
 
 async function otp_verification(req, res) {
@@ -115,6 +162,7 @@ async function otp_verification(req, res) {
 module.exports = {
     user_create,
     checkEmailExist,
+    checkemailexist,
     sendotp,
     otp_verification
 };

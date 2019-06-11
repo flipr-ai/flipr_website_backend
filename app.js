@@ -19,13 +19,12 @@ var loginRouter = require('./routes/login.routes');
 var app = express();
 
 // Check body function
-//var expressValidator = require('express-validator');
-//app.use(expressValidator())
+var expressValidator = require('express-validator');
 // Set up mongoose connection
 const mongoose = require('mongoose');
 let dev_db_url = 'mongodb+srv://admin:admin@flipr-scyzt.mongodb.net/test?retryWrites=true';
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -47,7 +46,22 @@ app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator({
+  errorFormatter(param, msg, value) {
+    const namespace = param.split("."),
+      root = namespace.shift(),
+      formParam = root;
+    while (namespace.length) {
+      //  formParam += "[" + namespace.shift() + "]";
+    }
+    return {
+      param: formParam,
+      msg,
+      value
+    };
+  }
+}));
 
 app.use('/api/userprofile', userprofileRouter);
 app.use('/api', indexRouter);
@@ -59,27 +73,22 @@ app.use('/api/testtxn', testtxn);
 app.use('/api/pgredirect', pgredirect);
 app.use('/api/pgresponse', pgresopnse);
 
-
-
 //for view 
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  // res.status(err.status || 500);
-  // res.render('error');
   res.status(err.status || 500);
   res.json({
     message: err.message,

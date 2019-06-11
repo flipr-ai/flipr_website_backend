@@ -3,7 +3,7 @@ var router = express.Router();
 var checksum = require('../../models/checksum');
 var config = require('../../config/config');
 var PaymentSchema = require('../../models/payment.model');
-
+//var countSchema = require('../../models/count.model');
 router.post('/response', function (req, res) {
 
   var paramlist = req.body;
@@ -24,30 +24,30 @@ router.post('/response', function (req, res) {
   console.log(req.body.STATUS);
 
   let payment = new PaymentSchema(
-		{
-        ORDER_ID: req.body.ORDER_ID,
-       CUST_ID: req.body.CUST_ID,
-       TXN_AMOUNT: req.body.TXN_AMOUNT,
-       TXN_DATE: req.body.TXN_DATE,
-       TXN_ID: req.body.TXN_ID,
-       BANKNAME: req.body.BANKNAME,
-       BANKTXNID: req.body.BANKTXNID,
-       PAYMENTMODE: req.body.PAYMENTMODE,
-       STATUS: req.body.STATUS,
-       RESPMSG: req.body.RESPMSG,
-       RESPCODE: req.body.RESPCODE,
-       GATEWAYNAME: req.body.GATEWAYNAME
+    {
+      ORDER_ID: req.body.ORDER_ID,
+      CUST_ID: req.body.CUST_ID,
+      TXN_AMOUNT: req.body.TXN_AMOUNT,
+      TXN_DATE: req.body.TXN_DATE,
+      TXN_ID: req.body.TXN_ID,
+      BANKNAME: req.body.BANKNAME,
+      BANKTXNID: req.body.BANKTXNID,
+      PAYMENTMODE: req.body.PAYMENTMODE,
+      STATUS: req.body.STATUS,
+      RESPMSG: req.body.RESPMSG,
+      RESPCODE: req.body.RESPCODE,
+      GATEWAYNAME: req.body.GATEWAYNAME
 
-		});
-	payment.save(function (err, userdata) {
-		if (err) {
+    });
+  payment.save(function (err, userdata) {
+    if (err) {
       console.log(err);
-		 }
-		else {
+    }
+    else {
       console.log(userdata);
-		}
+    }
 
-	});
+  });
 
 
   if (checksum.verifychecksum(paramlist, config.PAYTM_MERCHANT_KEY)) {
@@ -83,13 +83,14 @@ router.post('/response', function (req, res) {
       res.redirect('https://fliprpayment.netlify.com/paytmfailure');
     }
     else {
+
       res.redirect('https://fliprpayment.netlify.com/paytmsuccess');
     }
 
     //  res.render('response.ejs', { 'restdata': "true", 'paramlist': paramlist });
   } else {
     console.log("false");
-       res.redirect('https://fliprpayment.netlify.com/paytmfailure');
+    res.redirect('https://fliprpayment.netlify.com/paytmfailure');
     // res.render('response.ejs', { 'restdata': "false", 'paramlist': paramlist });
   };
 });

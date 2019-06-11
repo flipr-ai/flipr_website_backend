@@ -2,13 +2,11 @@ var checksum = require('../../models/checksum');
 var config = require('../../config/config');
 var express = require('express');
 var router = express.Router();
-
-var count = 0;
+var PaymentSchema = require('../../models/payment.model');
 
 router.get('/testtxn', function (req, res) {
    res.render('testtxn.ejs', { 'config': config });
 });
-
 
 router.post('/testtxn', function (req, res) {
 
@@ -19,7 +17,7 @@ router.post('/testtxn', function (req, res) {
 
    var paramarray = {
 
-      ORDER_ID: "flipr" + order,
+      ORDER_ID: "Flipr" + order,
       CUST_ID: CUST_ID,
       INDUSTRY_TYPE_ID: config.INDUSTRY_TYPE_ID,
       CHANNEL_ID: config.CHANNEL_ID,

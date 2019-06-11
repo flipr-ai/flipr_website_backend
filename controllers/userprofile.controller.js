@@ -1,10 +1,5 @@
 const userprofileSchema = require('../models/user.model');
 
-//Test function
-exports.test = function (req, res) {
-	res.send('Greetings from the Test controller!');
-};
-
 async function user_create(req, res) {
 
 	let userprofile = new userprofileSchema(
