@@ -93,49 +93,51 @@ async function user_create(req, res) {
     req.checkBody("email", "email is required").notEmpty();
     req.checkBody("contactno", "contactno is required").notEmpty();
 
-    var password = Bcrypt.hashSync(req.body.password, 10);
+    const errors = req.validationErrors();
+    if (errors) {
+        res.status(400).json({
+            "status": "400",
+            "message": errors
+        });
+    }
+ else {
 
-    // emailExist = await checkemailexist(req.body.email);
-    // if (emailExist === null) {
-    //     res.status(403).json({
-    //         "status": "403",
-    //         "data": "email is exist already"
-    //     });
-    // }
-    // else {
-        const errors = req.validationErrors();
-        if (errors) {
-            res.status(400).json({
-                "status": "400",
-                "message": errors
-            });
-        } else {
-
-            let userRegister = new userRegisterSchema(
-                {
-                    name: req.body.name,
-                    password: password,
-                    email: req.body.email,
-                    contactno: req.body.contactno,
-         //           creation_date: Date.now(),
+            emailExist = await checkemailexist(req.body.email);
+            if (emailExist === null) {
+                res.status(403).json({
+                    "status": "403",
+                    "data": "email is exist already"
                 });
-            userRegister.save(function (err, userdata) {
-                if (err) {
-                    res.status(400).json({
-                        "status": "400",
-                        "message": error
+            }
+            else {
+                var password = Bcrypt.hashSync(req.body.password, 10);
+
+                let userRegister = new userRegisterSchema(
+                    {
+                        name: req.body.name,
+                        password: password,
+                        email: req.body.email,
+                        contactno: req.body.contactno,
+                        //           creation_date: Date.now(),
                     });
-                }
-                else {
-                    res.status(200).json({
-                        "status": "200",
-                        "data": userdata
-                    });
-                }
-            });
+                userRegister.save(function (err, userdata) {
+                    if (err) {
+                        res.status(400).json({
+                            "status": "400",
+                            "message": error
+                        });
+                    }
+                    else {
+                        res.status(200).json({
+                            "status": "200",
+                            "data": userdata
+                        });
+                    }
+                });
+            }
         }
-    //}
-}
+    }
+//}
 
 async function otp_verification(req, res) {
 
