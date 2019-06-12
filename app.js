@@ -16,8 +16,10 @@ var pgresopnse = require('./routes/admin/response');
 var userprofileRouter = require('./routes/userprofile.routes');
 var userRegisterRouter = require('./routes/userRegister.routes');
 var loginRouter = require('./routes/login.routes');
-var app = express();
+var courseRouter = require('./routes/course.routes');
 
+var app = express();
+    
 // Check body function
 var expressValidator = require('express-validator');
 // Set up mongoose connection
@@ -67,6 +69,7 @@ app.use('/api/userprofile', userprofileRouter);
 app.use('/api', indexRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/userRegister', userRegisterRouter);
+app.use('/api/course',courseRouter);
 
 //for payment
 app.use('/api/testtxn', testtxn);

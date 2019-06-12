@@ -118,7 +118,7 @@ async function user_create(req, res) {
                         password: password,
                         email: req.body.email,
                         contactno: req.body.contactno,
-                        //           creation_date: Date.now(),
+                        creation_date: Date.now(),
                     });
                 userRegister.save(function (err, userdata) {
                     if (err) {

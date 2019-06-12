@@ -1,14 +1,14 @@
 const courseSchema = require('../models/course.model');
 
-async function courseDetail(req, res) {
+async function course_create(req, res) {
     
     let course = new courseSchema({
 
-        courseid: courseid,
-        coursename: coursename,
-        coursedesription: coursedesription,
-        duration: duration,
-        price: price
+        courseid: req.body.courseid,
+        coursename: req.body.coursename,
+        coursedesription: req.body.coursedesription,
+        duration: req.body.duration,
+        price: req.body.price
 
     });
     course.save(function (err, course) {
@@ -29,6 +29,31 @@ async function courseDetail(req, res) {
 
 }
 
+async function course_Detail(req,res){
+    console.log(req.body.courseid);
+    courseSchema.find({courseid:req.body.courseid}, function(err,coursedata){
+        if(err)
+        {
+            res.status(400).json({
+                "status": "400",
+                data: error
+            });
+        }
+        else
+        {
+            res.status(200).json({
+                "status": "200",
+                 data: coursedata
+            });
+        }
+
+    });
+
+
+
+}
+
 module.exports = {
-    courseDetail
+    course_Detail,
+    course_create
 };

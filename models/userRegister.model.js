@@ -7,9 +7,9 @@ let userRegisterSchema = new Schema({
 	email : {type: String},
 	contactno : {type: Number},
 	isverified: { type: Boolean, default: 1 },
-	// creation_date: { type: Date, default: Date.now},
-	// last_login_date:{type: Date, default: Date.now}
+    creation_date: { type: Date, default: Date.now},
+	last_login_date:{type: Date, default: Date.now}
 });
-
+ 
 // Exports the model
 module.exports = mongoose.model('userRegister', userRegisterSchema);

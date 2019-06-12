@@ -21,20 +21,19 @@ exports.login = function (req, res) {
                 "message": "The password is invalid"
             });
         }
-        // userRegisterSchema.findOneAndUpdate({ email: req.body.email }, { $set: { last_login_date: Date() } }, { new: true }, function (err, userdata) {
-        //     //        userRegisterSchema.find(req.body.id, {$set:{last_login_date:date}} , {new: true}, function(err, userdata){
-        //     if (err) {
-        //         console.log(err);
-        //     }
-        //     else {
+        userRegisterSchema.findOneAndUpdate({ email: req.body.email }, { $set: { last_login_date: Date() } }, { new: true }, function (err, userdata) {
+            if (err) {
+                console.log(err);
+            }
+            else {
                 req.session.user = user;
                 return res.status(200).json({
                     "status": "200",
                     "message": user
                 });
                 console.log(userdata);
-      //      }
-       // });
+           }
+       });
 
     });
 };
@@ -46,5 +45,4 @@ exports.logout = function (req, res) {
         "status": "200",
         "message": "logout scuccesfully"
     });
-    //userRegisterSchema.findByIdAndUpdate(req.body.id, { $set: { 'last_login_date': Date.now() },}, function (err, user) {
 }
