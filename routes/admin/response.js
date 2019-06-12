@@ -20,16 +20,16 @@ router.post('/response', function (req, res) {
   // newbody['CHECKSUMHASH'] = req.body['CHreq.body['ORDER_ID']ECKSUMHASH'];
 
   //var paramarray = new Array();
-
-  console.log(paramlist);
+  var status = req.body.STATUS;
+  // console.log(req.body.STATUS);
 
   let payment = new PaymentSchema(
     {
-      ORDER_ID: req.body.ORDER_ID,
-      CUST_ID: req.body.CUST_ID,
-      TXN_AMOUNT: req.body.TXN_AMOUNT,
+      ORDER_ID: req.body.ORDERID,
+      CUST_ID: req.body.CUSTID,
+      TXN_AMOUNT: req.body.TXNAMOUNT,
       TXN_DATE: req.body.TXN_DATE,
-      TXN_ID: req.body.TXN_ID,
+      TXN_ID: req.body.TXNID,
       BANKNAME: req.body.BANKNAME,
       BANKTXNID: req.body.BANKTXNID,
       PAYMENTMODE: req.body.PAYMENTMODE,
