@@ -29,6 +29,29 @@ async function course_create(req, res) {
 
 }
 
+async function course_data(req,res){
+    
+    courseSchema.find({}, function(err,coursedata){
+        if(err)
+        {
+            res.status(400).json({
+                "status": "400",
+                data: error
+            });
+        }
+        else
+        {
+            res.status(200).json({
+                "status": "200",
+                 data: coursedata
+            });
+        }
+
+    });
+
+}
+
+
 async function course_Detail(req,res){
     console.log(req.body.courseid);
     courseSchema.find({courseid:req.body.courseid}, function(err,coursedata){
@@ -55,5 +78,6 @@ async function course_Detail(req,res){
 
 module.exports = {
     course_Detail,
-    course_create
+    course_create,
+    course_data
 };

@@ -3,6 +3,7 @@ var config = require('../../config/config');
 var express = require('express');
 var router = express.Router();
 var PaymentSchema = require('../../models/payment.model');
+var countSchema = require('../../models/count.model');
 
 router.get('/testtxn', function (req, res) {
    res.render('testtxn.ejs', { 'config': config });
@@ -11,13 +12,27 @@ router.get('/testtxn', function (req, res) {
 router.post('/testtxn', function (req, res) {
 
    //   let order = count++;
+   function counter()
+   {
+      countSchema.find({}, { sort: { 'created_at' : -1 } }, function(err, count) {
+         if(err)
+         {
+            console.log(err);
+         }
+         return count;
+         console.log("inside the counter function"+count);
+       });
+   }
+   
+   var order1=counter();
+   console.log(order1);
    let order = Math.floor(100000 + Math.random() * 900000);
    var TXN_AMOUNT = req.body.TXN_AMOUNT;
    var CUST_ID = req.body.CUST_ID;
 
    var paramarray = {
 
-      ORDER_ID: "Flipr" + order,
+      ORDER_ID: "Flipr" + order1,
       CUST_ID: CUST_ID,
       INDUSTRY_TYPE_ID: config.INDUSTRY_TYPE_ID,
       CHANNEL_ID: config.CHANNEL_ID,

@@ -11,7 +11,7 @@ let PaymentSchema = new Schema({
     BANKNAME:{type:String},
     BANKTXNID:{type:Number},
     PAYMENTMODE:{type:String},
-    status:{type:String},
+    STATUS:{type:String},
     RESPMSG:{type:String},
     RESPCODE:{type:Number},
     GATEWAYNAME:{type:String}

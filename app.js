@@ -17,7 +17,7 @@ var userprofileRouter = require('./routes/userprofile.routes');
 var userRegisterRouter = require('./routes/userRegister.routes');
 var loginRouter = require('./routes/login.routes');
 var courseRouter = require('./routes/course.routes');
-
+var counter = require('./models/count.model');
 var app = express();
     
 // Check body function
@@ -67,6 +67,7 @@ app.use(expressValidator({
 
 app.use('/api/userprofile', userprofileRouter);
 app.use('/api', indexRouter);
+app.use('/api/count', counter);
 app.use('/api/login', loginRouter);
 app.use('/api/userRegister', userRegisterRouter);
 app.use('/api/course',courseRouter);

@@ -4,8 +4,8 @@ const Schema = mongoose.Schema;
 let orderSchema = new Schema({
 
     orderid:{type:Number},
-    productid:{type:Number},
-    productname:{type:String},
+    courseid:{type:Number},
+    cousesename:{type:String},
     customerid:{type:Number},
 
 });
