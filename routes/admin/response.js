@@ -7,6 +7,7 @@ var PaymentSchema = require('../../models/payment.model');
 router.post('/response', function (req, res) {
 
   var paramlist = req.body;
+  console.log(paramlist);
 
   // const newbody = new Array();
   // newbody['ORDER_ID'] = req.body['ORDER_ID'];
