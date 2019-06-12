@@ -32,7 +32,7 @@ router.post('/testtxn', function (req, res) {
 
    var paramarray = {
 
-      ORDER_ID: "Flipr" + order1,
+      ORDER_ID: "Flipr" + order,
       CUST_ID: CUST_ID,
       INDUSTRY_TYPE_ID: config.INDUSTRY_TYPE_ID,
       CHANNEL_ID: config.CHANNEL_ID,
