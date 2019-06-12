@@ -6,7 +6,7 @@ async function course_create(req, res) {
 
         courseid: req.body.courseid,
         coursename: req.body.coursename,
-        coursedesription: req.body.coursedesription,
+     //   coursedesription: req.body.coursedesription,
         duration: req.body.duration,
         price: req.body.price
 

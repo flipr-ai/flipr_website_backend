@@ -20,8 +20,8 @@ router.post('/response', function (req, res) {
   // newbody['CHECKSUMHASH'] = req.body['CHreq.body['ORDER_ID']ECKSUMHASH'];
 
   //var paramarray = new Array();
-  var status = req.body.STATUS;
-  console.log(req.body.STATUS);
+
+  console.log(paramarray);
 
   let payment = new PaymentSchema(
     {
