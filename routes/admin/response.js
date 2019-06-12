@@ -21,7 +21,7 @@ router.post('/response', function (req, res) {
 
   //var paramarray = new Array();
 
-  console.log(paramarray);
+  console.log(paramlist);
 
   let payment = new PaymentSchema(
     {
