@@ -17,6 +17,7 @@ var userprofileRouter = require('./routes/userprofile.routes');
 var userRegisterRouter = require('./routes/userRegister.routes');
 var loginRouter = require('./routes/login.routes');
 var courseRouter = require('./routes/course.routes');
+var cartRouter = require('./routes/cart.routes');
 var counter = require('./models/count.model');
 var app = express();
     
@@ -71,7 +72,7 @@ app.use('/api/count', counter);
 app.use('/api/login', loginRouter);
 app.use('/api/userRegister', userRegisterRouter);
 app.use('/api/course',courseRouter);
-
+app.use('/api/cart',cartRouter);
 //for payment
 app.use('/api/testtxn', testtxn);
 app.use('/api/pgredirect', pgredirect);
@@ -100,5 +101,6 @@ app.use(function (err, req, res, next) {
   });
 
 });
+
 
 module.exports = app;

@@ -3,10 +3,13 @@ const Schema = mongoose.Schema;
 
 let orderSchema = new Schema({
 
-    orderid:{type:Number},
     courseid:{type:Number},
     cousesename:{type:String},
-    customerid:{type:Number},
+    price:{type:Number},
+    duration:{type:String},
+    customerid:{type:String},
+    Status:{type:String,default:undefined},
+    txnstatus:{type:String,default:undefined},
 
 });
 

@@ -6,7 +6,6 @@ let courseSchema = new Schema({
     courseid:{type:Number},
     coursename:{type:String},
     duration:{type:String},
-//    coursedescription:[{}],
     price:{type:Number}
 
 });
