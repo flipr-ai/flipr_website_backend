@@ -8,6 +8,7 @@ let orderSchema = new Schema({
     price:{type:Number},
     duration:{type:String},
     customerid:{type:String},
+    cart_date: { type: Date, default: Date.now},
     Status:{type:String,default:undefined},
     txnstatus:{type:String,default:undefined},
 

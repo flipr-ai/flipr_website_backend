@@ -77,9 +77,17 @@ async function view_cart(req, res) {
 	}
 }
 
+async function remove_cart(req,res){
+
+	req.body("customerid","customerid is required");
+	req.body("courseid","courseid is required");
+	
+}
+
 module.exports = {
   
 	add_cart,
-	view_cart
+	view_cart,
+	remove_cart,
 
 };
