@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 let orderSchema = new Schema({
 
     courseid:{type:Number},
-    cousesename:{type:String},
+    coursename:{type:String},
     price:{type:Number},
     duration:{type:String},
     customerid:{type:String},
