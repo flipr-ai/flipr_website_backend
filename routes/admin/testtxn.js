@@ -3,7 +3,6 @@ var config = require('../../config/config');
 var express = require('express');
 var router = express.Router();
 var PaymentSchema = require('../../models/payment.model');
-var countSchema = require('../../models/count.model');
 let countert;
 router.get('/testtxn', function (req, res) {
    res.render('testtxn.ejs', { 'config': config });
@@ -26,20 +25,20 @@ router.post('/testtxn',async function (req, res) {
    //     });
    // }
    
-   let countertwo = await countSchema.findOne().sort('-created_at').exec(function(err, count) {
-      if(err)
-      {
-         console.log(err);
-      }
-      else{
-         dosomethin(count.count); 
-       //  countert==count.count 
-         console.log("inside the counter function"+count.count);
-        // return count.count;
-      }
-    });
+   // let countertwo = await countSchema.findOne().sort('-created_at').exec(function(err, count) {
+   //    if(err)
+   //    {
+   //       console.log(err);
+   //    }
+   //    else{
+   //       dosomethin(count.count); 
+   //     //  countert==count.count 
+   //       console.log("inside the counter function"+count.count);
+   //      // return count.count;
+   //    }
+   //  });
 
-    function dosomethin(){  console.log(countertwo);}
+   //  function dosomethin(){  console.log(countertwo);}
  
    let order = Math.floor(100000 + Math.random() * 900000);
    var TXN_AMOUNT = req.body.TXN_AMOUNT;

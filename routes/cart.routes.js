@@ -8,6 +8,4 @@ router.post('/addcart', cartcontroller.add_cart)
 
 router.post('/viewcart', cartcontroller.view_cart)
 
-
 module.exports=router;
-

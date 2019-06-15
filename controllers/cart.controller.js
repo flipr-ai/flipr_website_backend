@@ -39,7 +39,7 @@ async function add_cart(req, res) {
 			{	
 				res.status(200).json({
 				"status":"200",
-				"message": "add to cart successfully"
+				"message": orderdata
 				})
 			}
 		})

@@ -10,5 +10,7 @@ router.post('/create', coursecontroller.course_create)
 
 router.get('/getcoursedetail', coursecontroller.course_data)
 
+router.post('/getcourselist', coursecontroller.course_list)
+
 module.exports=router;
 

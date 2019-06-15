@@ -7,8 +7,8 @@ const courseSchema = require('../models/course.model');
         courseid: req.body.courseid,
         coursename: req.body.coursename,
         duration: req.body.duration,
-        price: req.body.price
-
+        price: req.body.price,
+        courselist:req.body.courselist
     });
     course.save(function (err, course) {
         if (err) {
@@ -71,8 +71,35 @@ async function course_Detail(req,res){
     });
 }
 
+async function course_list(req,res){
+
+   // console.log(req.body.courseid);
+    courseSchema.find({courseid:req.body.courseid}, function(err,coursedata){
+    if(err)
+    {
+        res.status(400).json({
+        "status": "400",
+        data: error
+        });
+    }
+    else
+    {
+       console.log(coursedata.courselist);
+        res.status(200).json({
+        "status": "200",
+        data: coursedata
+
+        });
+    }
+
+    });
+}
+
+
+
 module.exports = {
     course_Detail,
     course_create,
+    course_list,
     course_data
 };
