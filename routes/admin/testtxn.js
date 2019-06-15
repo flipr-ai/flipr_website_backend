@@ -53,8 +53,8 @@ router.post('/testtxn',async function (req, res) {
       TXN_AMOUNT: TXN_AMOUNT,
       MID: config.MID,
       WEBSITE: config.WEBSITE,
-      CALLBACK_URL: "https://dev.flipr.co.in/api/pgresponse/response"
-      //CALLBACK_URL: "http://localhost:3000/api/pgresponse/response"
+      //CALLBACK_URL: "https://dev.flipr.co.in/api/pgresponse/response"
+      CALLBACK_URL: "http://localhost:3000/api/pgresponse/response"
 
    }
    //    console.log(paramarray);
