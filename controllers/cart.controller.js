@@ -1,10 +1,21 @@
+/**
+ * order schema which will store order data 
+ * 
+ * @param {JSON} coursename coursename require
+ * @param {JSON} courseid courseid require
+ * @param {JSON} duration duration require
+ * @param {JSON} price price require
+ * @param {JSON} customerid coustomerid  require
+ *  @returns {JSON} 200,400
+ */
+
 const orderSchema = require('../models/order.model');
 
 async function add_cart(req, res) {
 
 	req.checkBody("courseid", "courseid is required").notEmpty();
 	req.checkBody("coursename", "coursename is required").notEmpty();
-	req.checkBody("duration", "courseid is required").notEmpty();
+	req.checkBody("duration", "duration is required").notEmpty();
 	req.checkBody("price","price is required").notEmpty();
 	req.checkBody("customerid","customerid is required").notEmpty();
 
@@ -48,6 +59,13 @@ async function add_cart(req, res) {
 
 }
 
+/**
+ * This method is used to  view_cart  data  
+ * 
+ * @param {JSON} customerid coustomerid  require
+ *  @returns {JSON} 200,400
+ */
+
 
 async function view_cart(req, res) {
 
@@ -77,6 +95,13 @@ async function view_cart(req, res) {
 	}
 }
 
+/**
+ *  this method is used to remove data from cart 
+ * 
+ * @param {JSON} courseid courseid require
+ * @param {JSON} customerid coustomerid  require
+ *  @returns {JSON} 200,400
+ */
 async function remove_cart(req,res){
 
 	req.body("customerid","customerid is required");

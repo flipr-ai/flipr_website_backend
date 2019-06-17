@@ -1,6 +1,13 @@
 const userRegisterSchema = require('../models/userRegister.model');
 const Bcrypt = require("bcryptjs");
 
+/**
+ * This method is used to login to the user 
+ * 
+ * @param {JSON} Email  email id 
+ * @param {JSON} password password  require
+ *  @returns {JSON} 200,400
+ */
 exports.login = function (req, res) {
     var email = req.body.email;
     var password = req.body.password;
@@ -38,6 +45,11 @@ exports.login = function (req, res) {
     });
 };
 
+/**
+ * This method will logout user from the application 
+ * 
+ *  @returns {JSON} 200,400
+ */
 exports.logout = function (req, res) {
 
     req.session.destroy();

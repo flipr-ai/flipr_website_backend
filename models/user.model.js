@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+/*This schema will store the usermodel */ 
 let userprofileSchema = new Schema({
 	name : {type: String, max:50},
 	email : {type: String},

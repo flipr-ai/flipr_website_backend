@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+/* This schema will store the payment data */
 let PaymentSchema = new Schema({
 
     ORDER_ID:{type:String},

@@ -1,3 +1,13 @@
+/**
+ * This method is used to create course 
+ * 
+ * @param {JSON} coursename coursename require
+ * @param {JSON} courseid courseid require
+ * @param {JSON} duration duration require
+ * @param {JSON} price price require
+ * @param {JSON} courselist courselist require
+ *  @returns {JSON} 200 sucess,400 erorr
+ *   */
 const courseSchema = require('../models/course.model');
 
     async function course_create(req, res) {
@@ -28,6 +38,12 @@ const courseSchema = require('../models/course.model');
 
     }
 
+    /**
+ * This method is used to find all courses  
+ * 
+ *  @returns {JSON} 200,400
+ */
+
 async function course_data(req,res){
 
     courseSchema.find({}, function(err,coursedata){
@@ -50,6 +66,13 @@ async function course_data(req,res){
 
 }
 
+/**
+ * This method is used to get course detail  
+ * 
+ * @param {JSON} courseid courseid require
+ *  @returns {JSON} 200,400
+ */
+
 async function course_Detail(req,res){
     console.log(req.body.courseid);
     courseSchema.find({courseid:req.body.courseid}, function(err,coursedata){
@@ -71,9 +94,15 @@ async function course_Detail(req,res){
     });
 }
 
+/**
+ * This method is used to get  course list 
+ * 
+ * @param {JSON} courseid courseid require
+ *  @returns {JSON} 200,400
+ */
+
 async function course_list(req,res){
 
-   // console.log(req.body.courseid);
     courseSchema.find({courseid:req.body.courseid}, function(err,coursedata){
     if(err)
     {

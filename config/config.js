@@ -1,7 +1,7 @@
 module.exports = {
 
   "secret": "supersecreat",
-  //  'database': 'mongodb+srv://admin:admin@flipr-scyzt.mongodb.net/test?retryWrites=true'
+  //'database': 'mongodb+srv://admin:admin@flipr-scyzt.mongodb.net/test?retryWrites=true'
   "PAYTM_PROD_URL":"https://secure.paytm.in",
   "MID":"FGPTNq64340845674739",
   "PAYTM_ENVIORMENT": "PROD",   // PROD FOR PRODUCTION

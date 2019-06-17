@@ -8,7 +8,7 @@ router.get('/testtxn', function (req, res) {
    res.render('testtxn.ejs', { 'config': config });
 });
 
-router.post('/testtxn',async function (req, res) {
+router.post('/testtxn', function (req, res) {
 
    //   let order = count++;
    // function counter()
@@ -43,10 +43,10 @@ router.post('/testtxn',async function (req, res) {
    let order = Math.floor(100000 + Math.random() * 900000);
    var TXN_AMOUNT = req.body.TXN_AMOUNT;
    var CUST_ID = req.body.CUST_ID;
-
+   var ORDER_ID=req.body.ORDER_ID;
    var paramarray = {
 
-      ORDER_ID: "Flipr" + order,
+      ORDER_ID: ORDER_ID,
       CUST_ID: CUST_ID,
       INDUSTRY_TYPE_ID: config.INDUSTRY_TYPE_ID,
       CHANNEL_ID: config.CHANNEL_ID,

@@ -3,7 +3,7 @@ var router = express.Router();
 var checksum = require('../../models/checksum');
 var config = require('../../config/config');
 var PaymentSchema = require('../../models/payment.model');
-//var countSchema = require('../../models/count.model');
+const orderSchema = require('../../models/order.model');
 router.post('/response', function (req, res) {
 
   var paramlist = req.body;
@@ -53,6 +53,19 @@ router.post('/response', function (req, res) {
 
   if (checksum.verifychecksum(paramlist, config.PAYTM_MERCHANT_KEY)) {
 
+    orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:RESPMSG,status:STATUS}},{new:true},function(err,doc){
+
+        if(err)
+        {
+          console.log(err)
+        }
+        else{
+          console.log(" updated sucessfully");
+
+        }
+
+
+      });
     // let paymentdata = new PaymentSchema({
     //   // ORDER_ID: req.body['ORDER_ID'],
     //   // CUST_ID: req.body['CUST_ID'],
@@ -80,11 +93,39 @@ router.post('/response', function (req, res) {
     //    console.log(paramlist);
 
     if (status === "TXN_FAILURE") {
+      orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:RESPMSG,status:STATUS}},{new:true},function(err,doc){
+
+        if(err)
+        {
+          console.log(err)
+        }
+        else{
+          console.log(" updated sucessfully");
+
+        }
+
+
+      });
+ 
 
       res.redirect('https://fliprpayment.netlify.com/paytmfailure');
     }
     else {
 
+      orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:RESPMSG,status:STATUS}},{new:true},function(err,doc){
+
+        if(err)
+        {
+          console.log(err)
+        }
+        else{
+          console.log(" updated sucessfully");
+
+        }
+
+
+      });
+      
       res.redirect('https://fliprpayment.netlify.com/paytmsuccess');
     }
 

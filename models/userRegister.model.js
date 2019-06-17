@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+/* This schema will store the user Registration detail */ 
 let userRegisterSchema = new Schema({
 	name : {type: String, max:50},
 	password: {type: String},

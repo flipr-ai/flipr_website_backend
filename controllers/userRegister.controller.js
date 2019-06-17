@@ -3,6 +3,12 @@ const otpSchema = require('../models/otp.model');
 var request = require("request");
 const Bcrypt = require("bcryptjs");
 
+/**
+ * This method is used to send otp  
+ * 
+ * @param {JSON} contactno contactno is require
+ *  @returns {JSON} 200,400
+ */
 async function sendotp(req, res) {
 
     let otp = Math.floor(1000 + Math.random() * 9000);
@@ -45,6 +51,12 @@ async function sendotp(req, res) {
     });
 }
 
+/**
+ * This method is used to checkEmail is exits or not. 
+ * 
+ * @param {JSON} email email  require
+ *  @returns {JSON} 200,400
+ */
 async function checkEmailExist(req, res) {
 
     req.checkBody("email", "Email is required").notEmpty();
@@ -72,6 +84,12 @@ async function checkEmailExist(req, res) {
     }
 }
 
+/**
+ * This funcation will check for the email exits or not in database  
+ * 
+  * @param {JSON} email email  require
+ *  @returns {Boolean} null,true
+ */
 async function checkemailexist(email) {
     return new Promise((resolve) => {
 
@@ -84,8 +102,17 @@ async function checkemailexist(email) {
 
         });
     });
-    //}
 }
+
+/**
+ * This method is used  to create user 
+ * 
+ * @param {JSON} name name  require
+ * @param {JSON} password password require
+ * @param {JSON} email email require
+ * @param {JSON} contactno contactno require
+ *  @returns {JSON} 200,400
+ */
 async function user_create(req, res) {
 
     req.checkBody("name", "name is required").notEmpty();
@@ -137,7 +164,13 @@ async function user_create(req, res) {
             }
         }
     }
-//}
+
+/**
+ * This method is used to verify otp 
+ * 
+ * @param {JSON} otp otp  require
+ *  @returns {JSON} 200,400
+ */
 
 async function otp_verification(req, res) {
 

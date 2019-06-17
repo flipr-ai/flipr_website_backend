@@ -5,8 +5,11 @@ const router = express.Router();
 // Require controler
 const logincontroller=require('../controllers/login.controller');
 
+// login routes
 router.post('/login',logincontroller.login);
 
+// logout routes
 router.get('/logout',logincontroller.logout);
+
 
 module.exports=router;
