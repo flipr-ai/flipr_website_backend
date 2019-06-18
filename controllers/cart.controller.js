@@ -109,10 +109,39 @@ async function remove_cart(req,res){
 	
 }
 
+async function ordered_cart(req, res) {
+
+	req.checkBody("customerid","customerid is required").notEmpty();
+	const errors = req.validationErrors();
+	if (errors) {
+		res.status(400).json({
+		"status": "400",
+		"message": errors
+	});
+	} else {
+		orderSchema.find({ customerid: req.body.customerid,txnstatus:"TXN_SUCCESS"}, function (err, orderdata) {
+        if (err) {
+        		res.status(400).json({
+				"status":"400",
+				"message": errors
+				});	
+        }
+        else
+        {
+        		res.status(200).json({
+				"status":"200",
+				"message": orderdata
+				})
+        }
+	});
+	}
+}
+
+
 module.exports = {
   
 	add_cart,
 	view_cart,
 	remove_cart,
-
+	ordered_cart
 };

@@ -7,27 +7,12 @@ const orderSchema = require('../../models/order.model');
 router.post('/response', function (req, res) {
 
   var paramlist = req.body;
+console.log("inside the response printing the paramlist");
   console.log(paramlist);
-
-  // const newbody = new Array();
-  // newbody['ORDER_ID'] = req.body['ORDER_ID'];
-  // newbody['CUST_ID'] = req.body['CUST_ID'];
-  // newbody['INDUSTRY_TYPE_ID'] = req.body['INDUSTRY_TYPE_ID'];
-  // newbody['CHANNEL_ID'] = req.body['CHANNEL_ID']; ``
-  // newbody['TXN_AMOUNT'] = req.body['TXN_AMOUNT'];
-  // newbody['MID'] = req.body['MID'];
-  // newbody['WEBSITE'] = req.body['WEBSITE'];
-  // newbody['CALLBACK_URL'] = req.body['CALLBACK_URL'];
-  // newbody['CHECKSUMHASH'] = req.body['CHreq.body['ORDER_ID']ECKSUMHASH'];
-
-  //var paramarray = new Array();
   var status = req.body.STATUS;
-  // console.log(req.body.STATUS);
-
   let payment = new PaymentSchema(
     {
       ORDER_ID: req.body.ORDERID,
-      CUST_ID: req.body.CUSTID,
       TXN_AMOUNT: req.body.TXNAMOUNT,
       TXN_DATE: req.body.TXN_DATE,
       TXN_ID: req.body.TXNID,
@@ -50,10 +35,9 @@ router.post('/response', function (req, res) {
 
   });
 
-
   if (checksum.verifychecksum(paramlist, config.PAYTM_MERCHANT_KEY)) {
 
-    orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:req.body.RESPMSG,status:req.body.STATUS}},{new:true},function(err,doc){
+    orderSchema.findOneAndUpdate({_id:req.body.ORDERID},{$set:{txnstatus:req.body.STATUS,Status:req.body.RESPMSG}},{new:true},function(err,doc){
 
         if(err)
         {
@@ -66,34 +50,11 @@ router.post('/response', function (req, res) {
 
 
       });
-    // let paymentdata = new PaymentSchema({
-    //   // ORDER_ID: req.body['ORDER_ID'],
-    //   // CUST_ID: req.body['CUST_ID'],
-    //   // TXN_AMOUNT: req.body['TXN_AMOUNT'],
-    //   // TXN_DATE: req.body['TXN_DATE'],
-    //   // TXN_ID: req.body['TXN_ID'],
-    //   // BANKNAME: req.body['BANKNAME'],
-    //   // BANKTXNID: req.body['BANKTXNID'],
-    //   // PAYMENTMODE: req.body['PAYMENTMODE'],
-    //   STATUS: status,
-    //   // RESPMSG: req.body['RESPMSG'],
-    //   // RESPCODE: req.body['RESPCODE'],
-    //   // GATEWAYNAME: req.body['GATEWAYNAME']
-    // });
-    // paymentdata.save(function (err, data) {
-    //   if (err) {
-    //     console.log(err);
-    //   }
-    //   else {
-    //     console.log(data);
-    //   }
-    // });
-
     console.log("true");
     //    console.log(paramlist);
 
     if (status === "TXN_FAILURE") {
-      orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:req.body.RESPMSG,status:req.body.STATUS}},{new:true},function(err,doc){
+      orderSchema.findOneAndUpdate({_id:req.body.ORDERID},{$set:{txnstatus:req.body.STATUS,Status:req.body.RESPMSG}},{new:true},function(err,doc){
 
         if(err)
         {
@@ -103,16 +64,12 @@ router.post('/response', function (req, res) {
           console.log(" updated sucessfully");
 
         }
-
-
       });
- 
-
       res.redirect('https://fliprpayment.netlify.com/paytmfailure');
     }
     else {
 
-      orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:req.body.RESPMSG,status:req.body.STATUS}},{new:true},function(err,doc){
+      orderSchema.findOneAndUpdate({_id:req.body.ORDERID},{$set:{txnstatus:req.body.STATUS,Status:req.body.RESPMSG}},{new:true},function(err,doc){
 
         if(err)
         {
@@ -122,13 +79,9 @@ router.post('/response', function (req, res) {
           console.log(" updated sucessfully");
 
         }
-
-
       });
-      
       res.redirect('https://fliprpayment.netlify.com/paytmsuccess');
     }
-
     //  res.render('response.ejs', { 'restdata': "true", 'paramlist': paramlist });
   } else {
     console.log("false");

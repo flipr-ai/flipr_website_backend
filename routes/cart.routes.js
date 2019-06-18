@@ -11,4 +11,7 @@ router.post('/addcart', cartcontroller.add_cart)
 
 router.post('/viewcart', cartcontroller.view_cart)
 
+// This route will be used to show payment 
+router.post('/ordered_cart', cartcontroller.ordered_cart)
+
 module.exports=router;

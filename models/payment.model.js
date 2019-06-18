@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 let PaymentSchema = new Schema({
 
     ORDER_ID:{type:String},
-    CUST_ID:{type:String},
     TXN_AMOUNT:{type:Number},
     TXN_DATE:{type:String},
     TXN_ID:{type:String},
