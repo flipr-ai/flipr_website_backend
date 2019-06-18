@@ -53,7 +53,7 @@ router.post('/response', function (req, res) {
 
   if (checksum.verifychecksum(paramlist, config.PAYTM_MERCHANT_KEY)) {
 
-    orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:RESPMSG,status:STATUS}},{new:true},function(err,doc){
+    orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:req.body.RESPMSG,status:req.body.STATUS}},{new:true},function(err,doc){
 
         if(err)
         {
