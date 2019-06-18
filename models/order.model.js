@@ -9,7 +9,7 @@ let orderSchema = new Schema({
     duration:{type:String},
     customerid:{type:String},
     cart_date: { type: Date, default: Date.now},
-    Status:{type:String,default:null},
+    Status:{type:String,default:"incart"},
     txnstatus:{type:String,default:null},
 
 });

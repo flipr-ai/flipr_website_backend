@@ -77,7 +77,7 @@ async function view_cart(req, res) {
 		"message": errors
 	});
 	} else {
-		orderSchema.findOne({ customerid: req.body.customerid}, function (err, orderdata) {
+		orderSchema.findOne({ customerid: req.body.customerid, Status:"incart"}, function (err, orderdata) {
         if (err) {
         		res.status(400).json({
 				"status":"400",
