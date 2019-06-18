@@ -9,36 +9,6 @@ router.get('/testtxn', function (req, res) {
 });
 
 router.post('/testtxn', function (req, res) {
-
-   //   let order = count++;
-   // function counter()
-   // {
-   //    countSchema.findOne().sort('-created_at').exec(function(err, count) {
-   //       if(err)
-   //       {
-   //          console.log(err);
-   //       }
-   //       console.log("inside the counter function"+count.count);
-   //       counterone=count.count;
-   //       return counterone;
-
-   //     });
-   // }
-   
-   // let countertwo = await countSchema.findOne().sort('-created_at').exec(function(err, count) {
-   //    if(err)
-   //    {
-   //       console.log(err);
-   //    }
-   //    else{
-   //       dosomethin(count.count); 
-   //     //  countert==count.count 
-   //       console.log("inside the counter function"+count.count);
-   //      // return count.count;
-   //    }
-   //  });
-
-   //  function dosomethin(){  console.log(countertwo);}
  
    let order = Math.floor(100000 + Math.random() * 900000);
    var TXN_AMOUNT = req.body.TXN_AMOUNT;
@@ -53,7 +23,7 @@ router.post('/testtxn', function (req, res) {
       TXN_AMOUNT: TXN_AMOUNT,
       MID: config.MID,
       WEBSITE: config.WEBSITE,
-      //CALLBACK_URL: "https://dev.flipr.co.in/api/pgresponse/response"
+      //CALLBACK_URL: "https://dev.flipr.co.in/api/pgresponse/response" https://shielded-caverns-21112.herokuapp.com
       CALLBACK_URL: "https://shielded-caverns-21112.herokuapp.com/api/pgresponse/response"
 
    }

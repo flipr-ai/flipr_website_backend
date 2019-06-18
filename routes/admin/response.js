@@ -93,7 +93,7 @@ router.post('/response', function (req, res) {
     //    console.log(paramlist);
 
     if (status === "TXN_FAILURE") {
-      orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:RESPMSG,status:STATUS}},{new:true},function(err,doc){
+      orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:req.body.RESPMSG,status:req.body.STATUS}},{new:true},function(err,doc){
 
         if(err)
         {
@@ -112,7 +112,7 @@ router.post('/response', function (req, res) {
     }
     else {
 
-      orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:RESPMSG,status:STATUS}},{new:true},function(err,doc){
+      orderSchema.findOneAndUpdate({_id:req.body.ORDER_ID},{$set:{txnstatus:req.body.RESPMSG,status:req.body.STATUS}},{new:true},function(err,doc){
 
         if(err)
         {
