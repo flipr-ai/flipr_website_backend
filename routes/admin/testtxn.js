@@ -54,7 +54,7 @@ router.post('/testtxn', function (req, res) {
       MID: config.MID,
       WEBSITE: config.WEBSITE,
       //CALLBACK_URL: "https://dev.flipr.co.in/api/pgresponse/response"
-      CALLBACK_URL: "http://localhost:3000/api/pgresponse/response"
+      CALLBACK_URL: "https://shielded-caverns-21112.herokuapp.com/api/pgresponse/response"
 
    }
    //    console.log(paramarray);
