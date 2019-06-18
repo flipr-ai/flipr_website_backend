@@ -11,6 +11,8 @@
 
 const orderSchema = require('../models/order.model');
 
+let count=1;
+
 async function add_cart(req, res) {
 
 	req.checkBody("courseid", "courseid is required").notEmpty();
@@ -34,8 +36,8 @@ async function add_cart(req, res) {
 			coursename: req.body.coursename,
 			duration: req.body.duration,
 			price: req.body.price,
-			customerid:req.body.customerid
-
+			customerid:req.body.customerid,
+			count:count
 
 		});
 		cart.save(function (err,orderdata) {
