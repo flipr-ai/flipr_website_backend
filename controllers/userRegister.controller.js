@@ -265,9 +265,9 @@ async function reset(req, res) {
         console.error('password reset link is invalid or has expired');
         res.status(403).send('password reset link is invalid or has expired');
       } else {
-        res.status(200).send({
-          username: user,
-          message: 'password reset link a-ok',
+        res.status(200).json({
+            "status": "200",
+            "data": user
         });
       }
     });
