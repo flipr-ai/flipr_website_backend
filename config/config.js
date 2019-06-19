@@ -9,6 +9,8 @@ module.exports = {
   "WEBSITE": "DEFAULT",
   "CHANNEL_ID": "WEB",
   "INDUSTRY_TYPE_ID":"Retail",
-  "PAYTM_FINAL_URL":"https://securegw.paytm.in/theia/processTransaction"
+  "PAYTM_FINAL_URL":"https://securegw.paytm.in/theia/processTransaction",
+  "EMAIL_ADDRESS":"kishan@flipr.ai",
+  "EMAIL_PASSWORD": "Kishan@123"
 
 };

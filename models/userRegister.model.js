@@ -8,7 +8,9 @@ let userRegisterSchema = new Schema({
 	contactno : {type: Number},
 	isverified: { type: Boolean, default: 1 },
     creation_date: { type: Date, default: Date.now},
-	last_login_date:{type: Date, default: Date.now}
+	last_login_date:{type: Date, default: Date.now},
+	resetPasswordToken: String,
+	resetPasswordExpires: Date
 });
  
 // Exports the model

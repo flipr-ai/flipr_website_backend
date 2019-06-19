@@ -13,6 +13,14 @@ router.put('/otpverification', userRegistercontroller.otp_verification);
 // This route is used to email verify
 router.post('/emailverify', userRegistercontroller.checkEmailExist);
 
+// forgot password
+
+router.post('/forgotPassword',userRegistercontroller.forgotPassword);
+
+//router.get('/reset', userRegistercontroller.reset);
+
+router.put('/updatePassword', userRegistercontroller.updatePassword);
+
 
 module.exports=router;
 
