@@ -260,7 +260,7 @@ async function forgotPassword(req, res) {
 // app.get('/reset', (req, res) => {
 async function reset(req, res) {    
 
-    User.findOne({resetPasswordToken: req.body.resetPasswordToken},(err, user) => {
+    userRegisterSchema.findOne({resetPasswordToken: req.body.resetPasswordToken},(err, user) => {
       if (user == null) {
         console.error('password reset link is invalid or has expired');
         res.status(403).send('password reset link is invalid or has expired');
