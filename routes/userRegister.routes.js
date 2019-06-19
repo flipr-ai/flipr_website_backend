@@ -17,7 +17,7 @@ router.post('/emailverify', userRegistercontroller.checkEmailExist);
 
 router.post('/forgotPassword',userRegistercontroller.forgotPassword);
 
-//router.get('/reset', userRegistercontroller.reset);
+router.post('/reset', userRegistercontroller.reset);
 
 router.put('/updatePassword', userRegistercontroller.updatePassword);
 
