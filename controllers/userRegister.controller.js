@@ -270,14 +270,17 @@ async function forgotPassword(req, res) {
 //  // });
 
 async function updatePassword(req, res) {
-    userRegisterSchema.find({
-        email: req.body.email,
-        resetPasswordToken: req.body.resetPasswordToken,
-        // resetPasswordExpires: {
-        //     [Op.gt]: Date.now(),
-        // },
-        //   },
-    }).then(user => {
+    
+    userRegisterSchema.findOne({ email: req.body.email, resetPasswordToken:req.body.resetPasswordToken }, function (err, user) {
+    // userRegisterSchema.find({
+    //     email: req.body.email,
+    //     resetPasswordToken: req.body.resetPasswordToken,
+    //     // resetPasswordExpires: {
+    //     //     [Op.gt]: Date.now(),
+    //     // },
+    //     //   },
+    // }).then(user => {
+    //     console.log(user);
         if (user == null) {
             console.error('password reset link is invalid or has expired');
             res.status(403).send('password reset link is invalid or has expired');
