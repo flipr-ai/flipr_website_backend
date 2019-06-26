@@ -21,9 +21,7 @@ router.post('/testtxn', function (req, res) {
       TXN_AMOUNT: TXN_AMOUNT,
       MID: config.MID,
       WEBSITE: config.WEBSITE,
-      //CALLBACK_URL: "https://dev.flipr.co.in/api/pgresponse/response" https://shielded-caverns-21112.herokuapp.com
-      CALLBACK_URL: "https://shielded-caverns-21112.herokuapp.com/api/pgresponse/response"
-
+      CALLBACK_URL: "https://gvrcrtaofa.execute-api.ap-south-1.amazonaws.com/production/api/pgresponse/response"
    }
 
    const newbody = new Array();

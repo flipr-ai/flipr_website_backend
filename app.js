@@ -5,13 +5,15 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const bodyParser = require('body-parser');
 var cors = require('cors');
-//var jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
+//let jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 const cookieSession = require('express-session');
 
 var indexRouter = require('./routes/index');
 var testtxn = require('./routes/admin/testtxn');
 var pgredirect = require('./routes/admin/pgredirect');
 var pgresopnse = require('./routes/admin/response');
+const config = require('./config/config');
+
 
 var userprofileRouter = require('./routes/userprofile.routes');
 var userRegisterRouter = require('./routes/userRegister.routes');
@@ -47,6 +49,7 @@ app.use(cookieSession({
   // Cookie Options
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator({
@@ -99,6 +102,5 @@ app.use(function (err, req, res, next) {
   });
 
 });
-
 
 module.exports = app;

@@ -65,7 +65,7 @@ console.log("inside the response printing the paramlist");
 
         }
       });
-      res.redirect('https://fliprpayment.netlify.com/paytmfailure');
+      res.redirect('https://fliprtest.netlify.com/paytmfailure');
     }
     else {
 
@@ -80,12 +80,12 @@ console.log("inside the response printing the paramlist");
 
         }
       });
-      res.redirect('https://fliprpayment.netlify.com/paytmsuccess');
+      res.redirect('https://fliprtest.netlify.com/paytmsuccess');
     }
     //  res.render('response.ejs', { 'restdata': "true", 'paramlist': paramlist });
   } else {
     console.log("false");
-    res.redirect('https://fliprpayment.netlify.com/paytmfailure');
+    res.redirect('https://fliprtest.netlify.com/paytmfailure');
     // res.render('response.ejs', { 'restdata': "false", 'paramlist': paramlist });
   };
 });

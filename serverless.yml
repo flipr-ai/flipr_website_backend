@@ -1,0 +1,18 @@
+service: my-serverless-app
+
+provider:
+ name: aws
+ runtime: nodejs10.x
+ memorySize: 128
+ timeout: 10
+ stage: production
+ region: ap-south-1
+
+functions:
+ api:
+   handler: lambda.universal
+   name: "Flipr_Backend"
+   events:
+     - http: ANY {proxy+}
+     - http: ANY /
+

@@ -158,9 +158,12 @@ async function user_create(req, res) {
                     });
                 }
                 else {
+                    // var token = jwt.sign({ id: user._id }, config.secret, {
+                    //     expiresIn: 86400 // expires in 24 hours
+                    //   });
                     res.status(200).json({
                         "status": "200",
-                        "data": userdata
+                        "data": userdata//,token
                     });
                 }
             });
@@ -239,7 +242,7 @@ async function forgotPassword(req, res) {
                 text:
                     'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n'
                     + 'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n'
-                    + `https://fliprpayment.netlify.com/setPassword/${token}\n\n`
+                    + `https://fliprpayment.netlify.com/setPassword/token/${token}\n\n`
                     + 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
             };
 

@@ -1,6 +1,7 @@
 const userRegisterSchema = require('../models/userRegister.model');
 const Bcrypt = require("bcryptjs");
-
+const config = require('../config/config');
+//let jwt    = require('jsonwebtoken'); // used to create, sign, and verify tokens
 /**
  * This method is used to login to the user 
  * 
@@ -33,10 +34,13 @@ exports.login = function (req, res) {
                 console.log(err);
             }
             else {
-                req.session.user = user;
+                //req.session.user = user;
+                // var token = jwt.sign({ id: user._id }, config.secret, {
+                //     expiresIn: 86400 // expires in 24 hours
+                //   });
                 return res.status(200).json({
                     "status": "200",
-                    "message": user
+                    "message": user//token
                 });
                 console.log(userdata);
            }
@@ -50,10 +54,18 @@ exports.login = function (req, res) {
  * 
  *  @returns {JSON} 200,400
  */
-exports.logout = function (req, res) {
+
+
+
+
+
+ exports.logout = function (req, res) {
+
+//    res.status(200).send({ auth: false, token: null });
 
     req.session.destroy();
     return res.status(200).json({
+        
         "status": "200",
         "message": "logout scuccesfully"
     });
